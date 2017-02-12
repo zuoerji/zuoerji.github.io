@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>同源&跨域 · 陆涛博客</title><meta name="description" content="同源
+同源策略是浏览器的一种安全策略，所谓同源是指，域名，协议，端口完全相同。
+
+
+ :引入页面
+
+var contenrWindow = iframe.contentWindow;//获得引入页面的Window
+设置引入页面contentWindow.document,getElementById"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>同源&amp;跨域</a></h3></div><div class="post-content"><h3 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h3><ul>
+<li>同源策略是浏览器的一种安全策略，所谓同源是指，域名，协议，端口完全相同。</li>
+</ul>
+<ul>
+<li><iframe> :引入页面</iframe></li>
+</ul>
+<p>var contenrWindow = iframe.contentWindow;//获得引入页面的Window</p>
+<p>设置引入页面<br>contentWindow.document,getElementById(‘text’).style.color = ‘red’;</p>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>src属性，天然有跨越属性</p>
+<ul>
+<li>跨域的解决方案</li>
+</ul>
+<p>1.顶级域名相同的可以通过document.domain = ‘study.com’</p>
+<h3 id="JSONP-获取天气"><a href="#JSONP-获取天气" class="headerlink" title="JSONP 获取天气"></a>JSONP 获取天气</h3><ul>
+<li>jsonp指定了一跨域方式访问</li>
+</ul>
+<p>###postMessage()用法</p>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//父窗口</div><div class="line">    &lt;iframe src=&quot;test2.html&quot;&gt;&lt;/iframe&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">      function receiveMessage(e) &#123;</div><div class="line">        alert(e.data);</div><div class="line">      &#125;</div><div class="line">      window.addEventListener(&quot;message&quot;, receiveMessage, false);</div><div class="line">    &lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//子窗口</div><div class="line">    &lt;input type=&quot;text&quot; value=&quot;send&quot; id=&quot;input&quot; /&gt;</div><div class="line">    &lt;input type=&quot;button&quot; value=&quot;send&quot; id=&quot;button&quot; /&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">      document.getElementById(&apos;button&apos;).onclick = function () &#123;</div><div class="line">          top.postMessage(document.getElementById(&apos;input&apos;).value, &apos;*&apos;);</div><div class="line">      &#125;;</div><div class="line">    &lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>注意<br>top指的是父窗口的iframe<br>XXX.postMessage这里XXX是要接收消息的那个窗口的window对象<br>*号是代表所有页面</p>
+</li>
+<li><p>运行结果</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3617300-bc4010eeb4524168.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<h3 id="JS-window对象的top、parent、opener含义"><a href="#JS-window对象的top、parent、opener含义" class="headerlink" title="JS window对象的top、parent、opener含义"></a>JS window对象的top、parent、opener含义</h3><ul>
+<li><p>1.top    该变更永远指分割窗口最高层次的浏览器窗口。如果计划从分割窗口的最高层次开始执行命令，就可以用top变量。 </p>
+</li>
+<li><p>2.opener opener用于在window.open的页面引用执行该window.open方法的的页面的对象。例如：A页面通过window.open()方法弹出了B页面，在B页面中就可以通过opener来引用A页面，这样就可以通过这个对象来对A页面进行操作。 </p>
+</li>
+<li><p>3.parent parent用于在iframe,frame中生成的子页面中访问父页面的对象。例如：A页面中有一个iframe或frame，那么iframe或frame中的页面就可以通过parent对象来引用A页面中的对象。这样就可以获取或返回值到A页面中。</p>
+</li>
+<li><p>4.另外self 指的是当前窗口</p>
+</li>
+</ul>
+<ul>
+<li><p>parent与opener的区别：</p>
+<ul>
+<li>parent指父窗口，在FRAMESET中，FRAME的PARENT就是FRAMESET窗口。<br>opener指用WINDOW.OPEN等方式创建的新窗口对应的原窗口。<br>parent是相对于框架来说父窗口对象<br>opener是针对于用window.open打开的窗口来说的父窗口，前提是window.open打开的才有document.parentWindow.menthod()調用父頁面的方法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>附：Window对象、Parent对象、Frame对象、Document对象和Form对象的阶层关系 Window对象→Parent对象→Frame对象→Document对象→Form对象，<br>如下： parent.frame1.document.forms[0].elements[0].value;</p>
+</blockquote>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>template模板引擎里不要加注释，容易报错</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2014-05-29</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2014/05/29/同源&amp;跨域/,陆涛博客,同源&amp;跨域,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2014/06/12/网络传输协议/" title="网络传输协议" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2014/05/26/什么是cookies/" title="什么是cookies" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

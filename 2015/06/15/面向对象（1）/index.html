@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>面向对象（1） · 陆涛博客</title><meta name="description" content="解决方案：
+
+使用js原生自带的一个对象，原型对象。
+每一个函数，在创建的时候，就自带 了一个prototype属性，通过prototype就可以访问原型对象
+在对象创建的时候，对象会默认创建一个原型对象，当执行对象方法的时候，对象没有这个东西，就会去在原型上找
+
+
+什么东西应该被加载原型上面，什么"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>面向对象（1）</a></h3></div><div class="post-content"><ol>
+<li><p>解决方案：</p>
+<ul>
+<li>使用js原生自带的一个对象，原型对象。</li>
+<li>每一个函数，在创建的时候，就自带 了一个prototype属性，通过prototype就可以访问原型对象</li>
+<li>在对象创建的时候，对象会默认创建一个原型对象，当执行对象方法的时候，对象没有这个东西，就会去在原型上找</li>
+</ul>
+</li>
+<li><p>什么东西应该被加载原型上面，什么东西应该被放在对象中</p>
+<ul>
+<li>假设这个方法是公用的（所有的对象都拥有的功能），数据是共享的，那么它就应该被放到原型中，独有的数据，独有的行为应该被放在对象中</li>
+</ul>
+</li>
+<li><p>针对构造函数而言，原型就是构造函数的prototype属性，常常将其称为原型属性，针对实例对象而言，原型就是实例对象的原型对象。</p>
+</li>
+<li><p>一般如何使用原型对象</p>
+<ul>
+<li>简单的说就是将共享的方法放到原型中，而独有的数据与行为放在当前对象里<br>①直接通过动态特性给原型对象添加成员，例如：Person.prototype.eat<br>②直接替换原型对象，让 Person.prototype 指向另一个对象. 直接赋值 如：Person.prototype={constructor:Person,};（注意：手动的添加constructor属性，表示对应的构造函数）</li>
+</ul>
+</li>
+</ol>
+<p>A方法是给系统提供的原型对象添加功能<br>B方式是换了一个对象，不适用系统的对象了</p>
+<ol>
+<li><p><strong>proto</strong></p>
+<ul>
+<li>早期浏览器是不支持<em>proto</em>，火狐率先使用该属性，但是是非标准的</li>
+<li>基本现在的新浏览器都支持该属性（ie8不支持该属性）</li>
+<li>在实际开发中不建议使用，但可以用于调试<br>访问</li>
+<li>使用构造函数，就使用prototype属性访问原型</li>
+<li>使用实例对象，就使用非标准的<em>proto</em>属性访问原型<br>其实他们访问的是一个东西</li>
+</ul>
+</li>
+<li><p>兼容低版本</p>
+<ul>
+<li>使低版本浏览器支持<br>第一步：判断系统是否支持<em>proto</em><br>if({}.<em>proto</em>){cl(‘支持’);}else{cl(‘不支持’);}<br>为了模拟该用法，不适用<em>proto</em> 去访问原型<br>要访问原型最保险的办法就是利用构造函数，只要实例对象，可以访问到constructor就可以了</li>
+</ul>
+</li>
+</ol>
+<p>如果实例对象没有这个东西，会去原型上找<br>p1.constructor.prototype</p>
+<ol>
+<li><p>继承的概念与原型式继承</p>
+<ul>
+<li>什么是继承<br>自己没有，但是别人有，拿过来自己用，就好像是自己的一样</li>
+<li>原型与实例对象<br>在js中，方法定义在原型对象中，而属性定义在实例对象中，调用方法的时候，实例对象本身是没有该成员的，但是依旧可以调用该方法，好像这个方法就是该实例对象的一样，因此，我们称该实例对象继承自原型对象</li>
+<li>任何一个实例，都是继承自其原型对象的，即原型式继承</li>
+</ul>
+</li>
+<li><p>为什么需要继承</p>
+<ul>
+<li>编程的发展<br>复用（重复使用）</li>
+<li>js运行效率<br>共享特性<br>复用<br>组件化  菜单的一套控件</li>
+</ul>
+</li>
+<li><p>传统面向对象语法特征</p>
+</li>
+<li><p>相关概念与说明<br>构造函数：本质上是一个函数，但是我们可以通过new来调用这个函数并且创建一个实例对象<br>实例对象：本质上是一个对象{}，但是我们是通过构造函数来创建的实例对象，通过构造函数的参数我们可以给实例对象添加一些成员<br>实例成员：就是实例对象的属性或者方法<br>静态成员：指的是构造函数的属性或者方法，什么东西会设置成静态的成员呢？比如说工具方法</p>
+</li>
+<li><p>属性搜索原则（成员搜索原则）</p>
+<ul>
+<li>对象在调用方法或者访问属性的时候，首先在当前对象中查询，如果有该成员使用并停止查找</li>
+<li>如果没有该成员，就在其原型对象中查找，如过有该成员即使用并停止查找</li>
+<li>如果还没有找到，就到该对象的原型对象的原型对象中查找<br>…………</li>
+<li>最后会查到Object.prototype上，如果还没有即返回undefined;</li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2015-06-15</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2015/06/15/面向对象（1）/,陆涛博客,面向对象（1）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2015/09/23/面向对象（2）/" title="面向对象（2）" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2014/09/15/Ajax（3）/" title="Ajax（3）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

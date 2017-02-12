@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>面向对象（4） · 陆涛博客</title><meta name="description" content="一、函数声明与变量声明在一起的时候的注意点
+
+函数的声明实际上包含两部分
+第一部分 告诉解释器 这个名字已经可以使用 （函数名，标识符）
+第二部分 告诉解释器，这个名字代表着一个函数（变量里存储着函数的引用）
+
+
+
+
+function func(){}
+console.log(&amp;apos;func&amp;"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>面向对象（4）</a></h3></div><div class="post-content"><h4 id="一、函数声明与变量声明在一起的时候的注意点"><a href="#一、函数声明与变量声明在一起的时候的注意点" class="headerlink" title="一、函数声明与变量声明在一起的时候的注意点"></a>一、函数声明与变量声明在一起的时候的注意点</h4><blockquote>
+<ul>
+<li>函数的声明实际上包含两部分<ul>
+<li>第一部分 告诉解释器 这个名字已经可以使用 （函数名，标识符）</li>
+<li>第二部分 告诉解释器，这个名字代表着一个函数（变量里存储着函数的引用）</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>function func(){}
+console.log(&apos;func&apos; in window)//当前执行环境中已经存在了func标识符
+console.log(type func)//function
+func=123;
+console.log(func)//123
+console.log(typeof func)
+//获得对象的类型
+console.log(Object.prototype.toString.call(func))
+</code></pre><blockquote>
+<ul>
+<li><p>当函数声明与变量声明冲突的时候，只看谁先有数据<br>函数的声明比变量的声明意义多一层，声明变量，是告诉解释器当前环境可以使用该名字，而声明函数，是告诉解释器，除了可以使用该名字，该名字还表示一个函数体</p>
+<ul>
+<li>先var num;后function num…<ul>
+<li>首先告知解释器有名字 num了</li>
+<li>后面是函数声明，由于已经有num名字可以使用了，所以就不再告诉解释器可以使用num，而是直接将num与函数结合在一起</li>
+</ul>
+</li>
+<li>先function num 后var num<ul>
+<li>一开始已经有num了，而且是函数，其实就是告诉解释器有个num可以用了，所以后面的num；属于重复声明，直接无效</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一个在新版本的浏览器中的特性</p>
+</li>
+</ul>
+</blockquote>
+<pre><code> if(true){
+      function foo(){
+          console.log(true);}
+}else{
+     function foo(){
+          console.log(false);}
+}
+foo();
+</code></pre><p>在早期的浏览器中（2015年）所有的浏览器（除了火狐）都是将其解释为声明，打印的是false，现在的浏览器最后的运行结果是true，表示if起到了作用</p>
+<pre><code> if(true){
+      function foo1(){
+          console.log(true);}
+}else{
+     function foo2(){
+          console.log(false);}
+}
+
+foo2();//error:foo2 is not function 已定义，但是函数未被指向
+//虽然这两个函数不是声明，但是也不能解释成函数表达式
+//如果是函数表达式foo1与foo2只能在函数内部使用
+//因此不推荐把函数声明写在代码块中（if语句，循环，{}里面）
+//有可能出现这样的问题：声明成功了一半（会在当前作用域中添加这个名字，代表可以使用。但是不会给他添加一层函数的含义）
+</code></pre><h4 id="二、作用域"><a href="#二、作用域" class="headerlink" title="二、作用域"></a>二、作用域</h4><blockquote>
+<ul>
+<li>词法作用域</li>
+<li>作用域：就是变量可以使用到不能使用的范围</li>
+<li>块级作用域：<ul>
+<li>块：代码块，即{}</li>
+<li>变量的使用从定义开始，到其所在的块级作用域结束</li>
+<li>代表语言：C，C++，C#，Java</li>
+</ul>
+</li>
+<li>js词法作用域<ul>
+<li>词法：就是定义，书写代码的规则</li>
+<li>所以，所谓的词法作用域，就是在书写代码的时候，根据书写代码的结构就可以确定数据的访问范围的作用域</li>
+<li>js不受块的影响，即使在块中定义声明变量，在块的外面依旧可以使用</li>
+<li>所谓的js的词法作用域，就是根据预解析规则定义变量的使用范围，全部代码中只有函数可以限定范围，其它均不能限定访问范围。在函数内部是一个独立的作用范围结构</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="三、JS词法作用域的细节"><a href="#三、JS词法作用域的细节" class="headerlink" title="三、JS词法作用域的细节"></a>三、JS词法作用域的细节</h4><blockquote>
+<ul>
+<li>在没有函数的情况下，所有的变量的访问规则依据预解析规则</li>
+<li>只有函数可以限定作用域，其它的不行</li>
+<li>在函数内部是一个独立的完整的作用域结构</li>
+<li>在函数内部，允许再定义函数，同时两个层次的函数都是作用域的独立体</li>
+<li>允许在函数内，访问函数外的变量，前提是函数内没有该变量的声明<ul>
+<li>优先访问当前作用域的数据</li>
+</ul>
+</li>
+<li>结论<ul>
+<li>词法作用域就是描述变量的访问范围：<ul>
+<li>在代码中只有函数可以限定作用范围，允许函数访问外部的变量，反之不允许</li>
+<li>在函数内优先访问内部声明的变量，如果没有才会访问外部的</li>
+<li>所有变量的访问规则，按照预解析规则来访问</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="四、函数的参数"><a href="#四、函数的参数" class="headerlink" title="四、函数的参数"></a>四、函数的参数</h4><pre><code>(function ( a ) {
+    console.log( a );
+    var a = 10;
+    console.log( a );
+})( 100 );
+</code></pre><blockquote>
+<ul>
+<li>函数定义参数，实际上就是在函数最开始的时候，有一个变量的声明 function（a）{}其含义就是，在已进入函数体，在所有操作开始之前（预解析之前）就有了该变量的声明</li>
+</ul>
+</blockquote>
+<pre><code>(function ( a ) {
+    console.log( a );
+    var a = 10;
+    console.log( a );
+    function a () {
+        console.log( a );
+    }
+    // a();
+})( 100 );
+</code></pre><ul>
+<li>注意：先调用函数，函数内部才会开始预解析，相当于函数最开始的时候就有一个var a=100;</li>
+</ul>
+<h3 id="五、作用域链规则"><a href="#五、作用域链规则" class="headerlink" title="五、作用域链规则"></a>五、作用域链规则</h3><blockquote>
+<ul>
+<li>什么是作用域链<br>就是在当前作用域链中如果要寻找一个内容，会先在当前作用域中寻找，如果没有找到就会渠道上一层作用域中继续寻找。。。一直找到全局作用域都没有的话，那么就找不到，报错。由于这种一环套一环的访问规则，这样的作用域构成一个链式结构，所以直接称其为作用域链<br>作用域链是用来做变量查找的，因此变量可以存储什么东西，链中就应该有什么东西，换句话说就是，链里面存储的是各种对象，可以将其想想成对象的序列（数组）</li>
+<li>绘制作用域链的规则<ul>
+<li>将所有的script标签作为一个链结构，标记为0级别的链</li>
+<li>将全局范围内，所有的声明变量名和声明函数名按照代码的顺序标注在0级链中</li>
+<li>由于每一个函数都 可以构成一个新的作用域链，所以每一个0级链上的函数都延展出1级链</li>
+<li>分别在每一个函数中进行上述操作将函数中的每一个名字都标注在1级链中</li>
+<li>每一条1级链中如果有函数，可以再次的延展出2级链，以此类推</li>
+</ul>
+</li>
+<li>分析代码的执行<br> 当作用域链绘制完成后，代码的分析也需要一步一步的完成<ul>
+<li>根据代码的执行顺序（从上往下，从左至右）在图中标记每一步的变量数据的变化</li>
+<li>如果需要访问某个变量，直接在当前n级链上查找变量，查找无序</li>
+<li>如果找到变量，直接使用，如果没有找到变量，在上一级，n-1级中查找</li>
+<li>一直找下去，知道0级链，如果0级链还没有就报错，XXX is not defined；</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2015-11-15</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2015/11/15/面向对象（4）/,陆涛博客,面向对象（4）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/07/21/面向对象（5）/" title="面向对象（5）" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2015/10/02/面向对象（3）/" title="面向对象（3）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

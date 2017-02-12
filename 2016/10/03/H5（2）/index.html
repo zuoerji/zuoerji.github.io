@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>H5（2） · 陆涛博客</title><meta name="description" content="Markdown
+用普通文本描述富文本的语法
+
+扩展名md,markdown
+
+read.me说明文件用markdown写
+
+可以用浏览器打开，所见即所得
+
+markdown插件，几乎不用
+
+
+复习
+新标签
+新属性
+智能表单
+网页多媒体
+SVG文件基本使用
+快捷方式——.name+tab
+
+基础AP"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>H5（2）</a></h3></div><div class="post-content"><h4 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h4><ul>
+<li><p>用普通文本描述富文本的语法</p>
+</li>
+<li><p>扩展名md,markdown</p>
+</li>
+<li><p>read.me说明文件用markdown写</p>
+</li>
+<li><p>可以用浏览器打开，所见即所得</p>
+</li>
+<li><p>markdown插件，几乎不用</p>
+</li>
+</ul>
+<h4 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h4><ul>
+<li>新标签</li>
+<li>新属性</li>
+<li>智能表单</li>
+<li>网页多媒体</li>
+<li>SVG文件基本使用</li>
+<li>快捷方式——.name+tab</li>
+</ul>
+<h4 id="基础API提升"><a href="#基础API提升" class="headerlink" title="基础API提升"></a>基础API提升</h4><ul>
+<li><p>document.getElement……appendChild……都属于基础API</p>
+</li>
+<li><p>alt +右键往下滑</p>
+</li>
+<li><p>新选择器</p>
+<ul>
+<li>document.querySelector(selector)——返回第一个满足选择器条件的元素，返回一个dom对象<ul>
+<li>代码段 qs=querySelector</li>
+<li>ae=addEventListenter</li>
+</ul>
+</li>
+<li>docuemnt.querySelectorAll(“.item”)——返回所有满足该条件的元素，返回元素类型为dom对象的数组</li>
+<li>$（”.item”）——返回一个jQuery对象（dom元素的数组）</li>
+<li>本质上jQuery的方式和querySelector的方式都是获取DOM数组，只不过jQuery会多一些其它成员</li>
+<li>DOM数组的每一个成员注册事件不能像jQuery一样直接注册，必须分别给每个元素添加</li>
+<li>h5就是将我们经常需要的操作又包装一层，原生API</li>
+</ul>
+</li>
+<li><p>Element.classList</p>
+<ul>
+<li><p>新H5中DOM对象多了一个classList属性，是一个数组</p>
+</li>
+<li><p>a标签有个默认跳转</p>
+</li>
+<li><p>this.classList.add()——添加一个新的类名</p>
+</li>
+<li><p>this.classList.remove()——删除一个类名</p>
+</li>
+<li><p>this.classList.contains()——判断是否包含一个指定的类名</p>
+</li>
+<li><p>this.classList.toggle()——切换一个class</p>
+<ul>
+<li>toggle函数的第二个参数true为添加，false删除</li>
+</ul>
+</li>
+<li><p>、、、javascript<br>//判断当前classList中有没有active<br>var link=document.querySelector(“.bar”);<br>link.addEventListener(“click”,function(e){<br>  //toggle函数的第二个参数是true为添加，false为删除<br>  var exist =this.classList.contains(“active”);<br>  this.classList.toggle(“active”,!exist);<br>  e.preventDefault();<br>});<br>、、、</p>
+</li>
+</ul>
+</li>
+<li><p>访问历史API</p>
+<ul>
+<li><p>界面上的所有JS操作不会被浏览器记住，就无法回到之前的状态</p>
+</li>
+<li><p>go函数可以传入一个地址，不传默认刷新</p>
+</li>
+<li><p>window.history.forward()</p>
+</li>
+<li><p>auto file name(插件plugin名字)</p>
+</li>
+<li><p>不建议用*号把默认样式去掉，效率低</p>
+</li>
+<li><p>默认样式有必要，只不过为了统一设置</p>
+</li>
+<li><p>当我们在伪造的访问历史中前进或后退时会执行一个popstate事件。</p>
+</li>
+<li><p>通过JS可以加入一个访问状态</p>
+</li>
+<li><p>history.pushState(放入历史中的状态数据，设置title（现在浏览器不支持）)</p>
+</li>
+<li><p>window.location可以拿到当前网页中跟地址相关的信息（location是个对象）  hash是锚点值</p>
+</li>
+<li><p>decodeURI作用就是从URL编码转换到之前的状态</p>
+</li>
+<li><p>encode反作用</p>
+</li>
+<li><p>、、、html<br><input onclick="add()" type="button" value="添加一个历史记录"><br><script></p>
+<pre><code>function add(){
+  //判断浏览器是否支持这个API
+  if(window.history &amp;&amp; history.pushState){
+    history.pushState(&quot;数据&quot;,&quot;设置历史状态显示的标题，但是浏览器不支持&quot;，&quot;？demo=&quot;+new Date().toLocalTimeString());
+  }
+}
+</code></pre><p></script><br>、、、</p>
+</li>
+<li><p>new Date()  获取的是一个时间对象</p>
+</li>
+<li><p>toLocalTimeString 转换成我们能认识的时间字符串</p>
+</li>
+<li><p>toDateTimeString 转换成我们能认识的日期字符串</p>
+</li>
+<li><p>、、、javascript<br>var title=window.location.search.split(“=”)[1];<br>if(title){<br>  //有值<br> //如果地址栏中的地址有中文，会以URL编码方式呈现<br>  content.innerHTML=data[decodeURI(data)];<br>}<br>、、、</p>
+</li>
+</ul>
+</li>
+<li><p>class</p>
+<ul>
+<li><p>之前</p>
+</li>
+<li><p>、、、javascript<br>var h1=document.getElementsByTagName(“h1”)[0];<br>var list =h1.className.split(“ “);<br>list.push(“class4”);<br>h1.className=list.join(“ “);<br>、、、</p>
+</li>
+<li><p>通过dom对象的classList，className是字符串的形式，classList是数组的形式</p>
+<ul>
+<li><p>、、、javascript<br>var h1=document.getElementsByTagName(“h1”)[0];<br>var list=h1.classList<br>、、、</p>
+</li>
+<li><p>通过classList封装了一些针对增加、删除、切换的方法——add(“newclass”)； remove(“oldclass”)； toggle(“cl”)  存在则删除，不存在添加；contains()是否包含</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>控制台clear（）</p>
+<h4 id="全屏API"><a href="#全屏API" class="headerlink" title="全屏API"></a>全屏API</h4><ul>
+<li><p>、、、javascript<br>var elem = 需要全屏的元素；<br>if({elem.webkitRequestFullScreen){<br>  elem.webkitRequestFullScreen();<br>}else if(elem.mozRequestFullScreen){<br>  elem.webkitRequestFullScreen();<br>}else if(elem.requestFullScreen){<br>  elem.requestFullScreen();<br>}<br>、、、</p>
+</li>
+<li><p>需要操作用户的界面的时候，都需要得到用户的允许</p>
+</li>
+<li><p>if()return  不写{}，只能在单句代码的时候才可以这样操作</p>
+</li>
+<li><p>在全屏后，背景颜色会不起作用，得单独设置</p>
+</li>
+<li><p>给元素全屏或者document.body全屏</p>
+</li>
+</ul>
+<h4 id="网页存储"><a href="#网页存储" class="headerlink" title="网页存储"></a>网页存储</h4><ul>
+<li><p>application cache——可以让网页离线访问</p>
+</li>
+<li><p>google开发工具有个功能可以断开网络——network》》no throttling 》可以模拟网络</p>
+</li>
+<li><p>tab键不起作用时，可以用Ctrl+E</p>
+</li>
+<li><p>：：before是元素一开始的时候，在元素内部</p>
+</li>
+<li><p><code>&lt;html lang=&quot;en&quot; manifest=&quot;cache.mainfest&quot;&gt;</code>——manifest属性对应指向一个文件，这个文件称之为H5的缓存清单。这个路径是相对路径</p>
+<ul>
+<li><p>应用程序缓存 正常开发</p>
+</li>
+<li><p>给html添加一个manifest属性指向一个文件</p>
+</li>
+<li><p>、、、<br>CACHA MANIFEST</p>
+<h1 id="version-1-0-0"><a href="#version-1-0-0" class="headerlink" title="version 1.0.0"></a>version 1.0.0</h1><p>CACHA://代表缓存下可以访问的文件，哪些文件可以缓存下来</p>
+<pre><code>index.html//这里需要缩进
+script.js
+style.css
+</code></pre><p>NETWORK://哪些文件在有网络的情况下可以访问</p>
+<pre><code>*
+</code></pre><p>、、、</p>
+</li>
+<li><p>markdown编辑器，可以离线访问，得之前访问过，有过缓存才可以</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Web-Storage"><a href="#Web-Storage" class="headerlink" title="Web Storage"></a>Web Storage</h4><ul>
+<li><p>localStorage(生命周期是永久的) &amp; sessionStorage（浏览器结束的时候就没有了，用法是一样的）</p>
+</li>
+<li><p>getItem方式获取一个不存在的键，返回空字符串，而[]返回undefined</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">* 、、、javascript</div><div class="line">  var btnSet = document.querySelector(&quot;#btn_set&quot;);</div><div class="line">  var btnGet = document.querySelector(&quot;#btn_get&quot;);</div><div class="line">  var txtValue = document.querySelector(&quot;#txt_value&quot;);</div><div class="line">  btnGet.addEventListener(&quot;click&quot;,function()&#123;</div><div class="line">    //txtValue.value=localStorage.getItem(&quot;key1&quot;);</div><div class="line">    if(window.localStorage)</div><div class="line">    txtValue.value=localStorage(&quot;key1&quot;);</div><div class="line">  &#125;);</div><div class="line">  btnSet.addEventListener(&quot;click&quot;,function()&#123;</div><div class="line">    //localStorage.setItem(&quot;key1&quot;,txtValue.value);</div><div class="line">    localStorage[&quot;key1&quot;]=txtValue.value;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>id以下划线，class以中划线</li>
+</ul>
+<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><ul>
+<li>提供客户端本地操作文件的可能</li>
+<li>file API</li>
+<li>文件域 <input type="file" id="" multiple></li>
+<li>对于表单里的input来说：可以直接通过表单的name属性找到它</li>
+<li>document.form[0].input_file</li>
+<li>multiple是让文件域可以多选</li>
+<li>可以通过在控制台输入document.form[0].input_file.files 可以查看已经上传的文件，以数组的形式呈现</li>
+<li>lastModified——表示最近修改时间</li>
+<li>lastModifiedDate——date对象</li>
+<li>?:happy: v3.bootcss.com</li>
+<li>js里面常用单引号</li>
+</ul>
+<h4 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h4><ul>
+<li>支持网页内的拖放</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-10-03</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2016/10/03/H5（2）/,陆涛博客,H5（2）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/11/14/CSS3（1）/" title="CSS3（1）" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/10/03/H5（1）/" title="H5（1）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

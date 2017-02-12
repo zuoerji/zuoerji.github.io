@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>node（1） · 陆涛博客</title><meta name="description" content="第一部分模块化知识
+从现实角度来说，模块化就是一种生产方式而已
+
+把一些复杂的事物具体的分成了不同的小模块来解决这个复杂的问题
+好处：生产效率高便于维护
+
+
+在js代码中，一般我们所指的一个文件就是一个模块
+是一种生产方式，生产效率高，维护成本低
+
+
+
+
+避免命名空间污染，变量污染，解决文件依赖混乱"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>node（1）</a></h3></div><div class="post-content"><h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><h3 id="模块化知识"><a href="#模块化知识" class="headerlink" title="模块化知识"></a>模块化知识</h3><ul>
+<li><p>从现实角度来说，模块化就是一种生产方式而已</p>
+<ul>
+<li>把一些复杂的事物具体的分成了不同的小模块来解决这个复杂的问题<ul>
+<li>好处：<br>生产效率高<br>便于维护</li>
+</ul>
+</li>
+<li>在js代码中，一般我们所指的一个文件就是一个模块<ul>
+<li>是一种生产方式，生产效率高，维护成本低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>避免命名空间污染，变量污染，解决文件依赖混乱问题</p>
+<ul>
+<li>全局函数</li>
+<li>命名空间 老王家的小明<ul>
+<li>好处：理论意义上减少了命名冲突的问题，成员与成员之间的关系更加明确了</li>
+<li>缺点：<ul>
+<li>暴露了所有的模块成员，内部状态可以被外部改写，不安全</li>
+<li>命名空间越来越长（前缀越来越长，使用多个“.”操作符）<br>  _foo，如果以后再看到这样的属性名称，（私有属性）表示该模块不希望你访问修改这个属性，但是这种方式下的属性可以被修改</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>沙箱模式</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;<span class="attr">add</span>:add,<span class="attr">divide</span>:divide&#125;&#125;)()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>模块规范（便于团队合作）<br>  CommonJS、AMD、CMD和UMD都是社区搞出来的东东</p>
+<ul>
+<li>服务器端规范<ul>
+<li>CommonJS<br>  代表：Node.js</li>
+</ul>
+</li>
+<li><p>浏览器端规范</p>
+<ul>
+<li>AMD<br>  代表：RequireJS（AMD对应的实现方案，国外）</li>
+<li><p>CMD（Common Module Definition）公共模块定义规范<br>  代表：SeaJS（CMD对应的实现方案，国内）<br>  特性</p>
+<ul>
+<li>一个模块就是一个单独的文件</li>
+<li>每个模块都是一个单独的作用域</li>
+<li><p>预加载，懒执行<br>CMD模块规范定义的四大API：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require,exports,module</span>)</span>&#123;</div><div class="line">    &lt;!--<span class="keyword">do</span> sth--&gt;</div><div class="line">    <span class="built_in">require</span>(<span class="string">'./b.js'</span>)</div><div class="line">    <span class="keyword">var</span> foo=<span class="string">'bar'</span></div><div class="line">    <span class="built_in">module</span>.exports=foo</div><div class="line">    &lt;!-<span class="number">-1.</span>定义模块</div><div class="line">    <span class="number">2.</span>加载模块</div><div class="line">    <span class="number">3.</span>在模块中暴露内容--&gt;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>define(factory)<br>define是一个全局函数，用来定义模块<br>define接收factory参数，factory可以是一个函数，也可以是一个对象或字符串<br>factory为对象、字符串时，表示模块的接口就是该对象、字符串<br>模块系统主要解决模块的<code>定义</code>、<code>依赖</code>和<code>导出</code></p>
+</li>
+</ul>
+</li>
+<li><p>seajs<br>  1、 引入sea.js<br>  2、 使用我们的主模块<br>  3、 在我们主模块里面加载其它的第三方模块<br>  require方法得到的就是指定的模块中向外暴露的接口对象 module.exports<br>  默认情况下 module.exports就是一个空对象<br>  if（typeof define==’function’&amp;&amp;define.cmd){</p>
+<pre><code>define(function(){
+
+})
+</code></pre><p>  }</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* UMD
+    * 通用模块定义规范
+        我们在学习完Node模块化之后，会学习UMD这种定意思规范
+* 终极解决方案 ECMAScript 2015（ES6）
+</code></pre><ol>
+<li>http协议<ul>
+<li>回环地：localhost/127….</li>
+<li>状态码：</li>
+<li>推荐书籍：《图解Http》 《http权威指南》</li>
+<li>对异步的理解<br>  setTimeout(function(){},0)</li>
+</ul>
+</li>
+<li>常用编码</li>
+</ol>
+<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><ol>
+<li>Require.js<ul>
+<li>define 有两种方式</li>
+</ul>
+<ul>
+<li>第一种，没有依赖的情况，直接return</li>
+<li>第二种，有依赖的情况，一个依赖也需要写成数组的形式</li>
+</ul>
+</li>
+<li><p>Seajs和RequireJs的区别</p>
+<ul>
+<li>相同：都是一个适用于浏览器端 的模块加载器</li>
+<li>seajs遵循的是CMD规范<br>requirejs遵循的是AMD规范<br>seajs是预加载、懒执行（只要启动了模块系统，seajs会预先将所有的js脚本文件都下载下来，无关代码逻辑，懒执行——所有模块加载完成才执行）<br>requirejs是预加载、预执行（在加载过程中就已经执行了）<br>requirejs有一个基础路径，这个基础路径默认是入口模块 所属的目录</li>
+</ul>
+</li>
+<li><p>node<br>构建在chrome的v8引擎之上</p>
+</li>
+</ol>
+<p>使用node可以做什么</p>
+<ul>
+<li>做动态网站（把之前写的静态页面给动态化）<br>node充当的就是一个后台web服务器的作用（接收请求，处理请求，发送响应）<ul>
+<li>基于Web的聊天客户端</li>
+<li>实现多人游戏后台服务器</li>
+<li>单页面浏览应用程序 </li>
+</ul>
+</li>
+</ul>
+<p>REPL环境<br>read-eval-print-loop<br>就是浏览器中的控制台<br>可以使用repl环境进行测试</p>
+<p>终端也叫做控制台，有人也叫bash(在Linux中)，terminal<br>终端就是可以用来输入一些命令，然后把改命令的执行结果输出到终端中<br>在计算机中，所有通过可视化界面能做到的操作都可以通过命令来完成</p>
+<p>控制台默认进入当前用户目录<br>如果想切换盘符，例如现在在C盘，想要进入D盘，直接输入’d:’<br>cls clear screen</p>
+<p>在node中，天生就是一个模块化的东西<br>默认在一个文件模块中，定义的所有元素都属于当前文件模块<br>在整个文件模块系统中，都是共享的一个global，不要通过global去进行变量的共享<br>global是类似于window的一个东西，可以通过global对象在多个模块与模块之间进行元素的共享，但是不建议使用global，要使用模块提供的module.exports进行接口的导出</p>
+<p>console<br>全局函数<br>setImmediate()和clearImmediate()<br>    ——可以用来异步执行的一个功能函数<br>    ——没有第二个参数<br>    setTimeout(function(){},0),就等同于setImmediate()<br>setTimeout()和clearTimeout()<br>setInterval()和clearInterval()<br>process.argv<br>process.stdin.on监听我们的……事件类型的</p>
+<p>伪全局对象<br>——都是模块内部都有的方法或属性<br>exports  module  require</p>
+<p>伪全局变量</p>
+<ul>
+<li>__dirname<br>  获取到的是当前文件所属目录的绝对路径</li>
+<li>__filename<br>  获取到的是当前文件模块的绝对路径，包含自己的文件名+后缀</li>
+</ul>
+<p>当我们用户输入数据，并且回车，就会触发data事件类型<br>node调试<br>node debug 文件名</p>
+<h2 id="第五天"><a href="#第五天" class="headerlink" title="第五天"></a>第五天</h2><p>Node提供饿了一个核心net模块，专门用于网络编程<br>var net=require(‘net’);<br>var server=net.createServer();<br>server.on(‘connection’,function(){</p>
+<p>});<br>server.listen(3000);</p>
+<p>chorme会默认去请求收藏夹图标（浏览器的默认行为）<br>程序——启用或关闭Windows功能——Telnet客户端打上勾——确定——（能帮助我们测试当前的服务器，Telnet本身也是终端下的应用程序）<br>telnet 127.168.12.14:端口<br>只要连接成功，就会触发connection连接时间，然后将当前连接的客户端封装成一个对象socket<br>Socket是一个双向的数据通信流，可读、可写<br>可以通过 Socket 对象的 write 方法，给当前连接的客户端发送数据<br>socket.write(‘hello’)<br>socket.on(‘data’,function(data){<br>    console.log(data.toString());<br>})</p>
+<p>理解socket<br>net负责数据的收发，偏底层<br>IP地址用来定位一台计算机的<br>端口号定位不同的程序软件，是由操作系统虚拟出来的<br>socket（插孔，插座）表示IP地址+端口号抽象出来的一个对象，然后传递给处理回调函数<br>socket.remoteAddress();<br>socket.remotePort</p>
+<p>npm install -g nodemon(全局工具)</p>
+<p>telnet只用于简单的测试</p>
+<p>三次握手就是为了保证双方互相都能该收到对方的消息（数据传输的可靠性）<br>‘我来了’，‘我收到你的消息了’，‘我也收到你发的消息了’</p>
+<p>当浏览器在解析和渲染的过程中，如果发现DOM中有link img script等具有src属性的标签<br>浏览器再次对服务器发起一个新的请求，重新获取数据，继续往后解析和渲染</p>
+<p>请求报文包括</p>
+<pre><code>请求头+请求体（可选的）
+请求头：
+    请求首行 请求方法+请求路径+HTTP协议版本
+    请求首部字段 以键值对的形式组成，里面包含一些附加信息，例如user-Agent 用来表示当前的客户端是什么
+    回车换行
+    【请求体】
+</code></pre><p>服务器将要发送给客户端的数据消息，通过Http协议，将要发送的数据包装成响应报文，内容如下<br>响应报文<br>    响应头<br>        响应首行<br>        相应首部字段<br>        回车换行<br>        响应体</p>
+<pre><code>// 对于下面的服务器来说，无论客户端输入了任何的请求路径，返回的都是当前服务器的最新时间
+var http = require(&apos;http&apos;);
+
+var server = http.createServer();
+// server服务器已经自动将客户端的请求报文解析成了一个Request对象， 然后传递给了request请求的回调函数中的第一个参数
+// server服务器还会把该客户端的socket对象包装成一个Response对象，然后传递给request请求处理函数中的第二个参数
+server.on(&apos;request&apos;, function(request, response) {
+    // console.log(&apos;有客户端请求进来&apos;);
+    // 当调用了write方法之后，客户端不会主动的挂电话，需要我们自己手动挂掉
+    // 当浏览器收到该消息的时候，如果没有主动的告诉浏览器，该内容是utf-8编码，那浏览器会通过当前OS默认的系统编码来解析数据
+    // 服务器给客户端发送响应消息之前，最好告诉客户端本次的数据内容Content-type是什么类型
+    response.writeHead(200, {
+        &apos;Content-Type&apos;: &apos;text/html;charset=utf-8&apos;
+    })
+    response.write(&apos;&lt;h1&gt;欢迎你 hello world&lt;/h1&gt;&apos;);
+    // 注意：当调用了response.end（）之后，就不能再次发送数据了，否则报错
+    // response.end（）一定要在发送响应头和响应内容之后
+    // write可以写多次，但是在一次请求和响应过程中，一定要记得end，表示结束响应
+    response.end();
+});
+
+// 开启服务器，设置监听端口
+server.listen(3000, &apos;127.0.0.1&apos;, function() {
+    console.log(&apos;服务器开启成功，请访问http://127.0.0.1:3000&apos;);
+})     
+</code></pre><p>  <a href="http://127.168.12.24/abc.js" target="_blank" rel="external">http://127.168.12.24/abc.js</a> 这里的abc.js是 URI  统一资源定位标识符</p>
+<p>  curl<br>  curl是一个命令行工具，是一个非常有用的网站开发工具。作用是发出网络请求，然后得到和提取数据，输出在控制台中。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-01-18</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2017/01/18/node（1）/,陆涛博客,node（1）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/02/05/node（2）/" title="node（2）" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/12/20/CSS3（2）/" title="CSS3（2）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

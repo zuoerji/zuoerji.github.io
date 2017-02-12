@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>CSS3（1） · 陆涛博客</title><meta name="description" content="第1章CSS3简介如同人类的的进化一样，CSS3是CSS2的“进化”版本，在CSS2基础上，增强或新增了许多特性， 弥补了CSS2的众多不足之处，使得Web开发变得更为高效和便捷。
+1.1??CSS3的现状1、浏览器支持程度差，需要添加私有前缀
+2、移动端支持优于PC端
+3、不断改进中
+4、应用相对"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>CSS3（1）</a></h3></div><div class="post-content"><h1 id="第1章CSS3简介"><a href="#第1章CSS3简介" class="headerlink" title="第1章CSS3简介"></a><a href="undefined">第1章CSS3简介</a></h1><p>如同人类的的进化一样，CSS3是CSS2的“进化”版本，在CSS2基础上，增强或新增了许多特性， 弥补了CSS2的众多不足之处，使得Web开发变得更为高效和便捷。</p>
+<h2 id="1-1-CSS3的现状"><a href="#1-1-CSS3的现状" class="headerlink" title="1.1??CSS3的现状"></a><a href="undefined">1.1??CSS3</a>的现状</h2><p>1、浏览器支持程度差，需要添加私有前缀</p>
+<p>2、移动端支持优于PC端</p>
+<p>3、不断改进中</p>
+<p>4、应用相对广泛</p>
+<h2 id="1-2-如何对待"><a href="#1-2-如何对待" class="headerlink" title="1.2??如何对待"></a><a href="undefined">1.2??如何对待</a></h2><p>1、坚持渐进增强原则</p>
+<p>2、考虑用户群体</p>
+<p>3、遵照产品的方案</p>
+<p>4、听Boss的</p>
+<h1 id="第2章准备工作"><a href="#第2章准备工作" class="headerlink" title="第2章准备工作"></a><a href="undefined">第2章准备工作</a></h1><h2 id="2-1-统一环境"><a href="#2-1-统一环境" class="headerlink" title="2.1??统一环境"></a><a href="undefined">2.1??统一环境</a></h2><p>由于CSS3兼容性问题的普遍存在，为了避免因兼容性带来的干扰，我们约定统一的环境，以保证学习的效率，在最后会单独说明兼容性的问题。</p>
+<p>1、Chrome浏览器version 46+</p>
+<p>2、Firefox浏览器firefox 42+</p>
+<p>3、PhotoShop CS6（建议）</p>
+<h2 id="2-1-如何使用手册"><a href="#2-1-如何使用手册" class="headerlink" title="2.1??如何使用手册"></a><a href="undefined">2.1??如何使用手册</a></h2><p>学会使用工具，可以让我们事半功倍。</p>
+<p>[] ???? 表示全部可选项</p>
+<p>||? ???? 表示或者</p>
+<p>|?? ???? 表示多选一</p>
+<p>？???? 表示0个或者1个</p>
+<p>*? ???? 表示0个或者多个</p>
+<p>{}???? ???? 表示范围</p>
+<h1 id="第3章基础知识"><a href="#第3章基础知识" class="headerlink" title="第3章基础知识"></a><a href="undefined">第3章基础知识</a></h1><h2 id="3-1-选择器"><a href="#3-1-选择器" class="headerlink" title="3.1??选择器"></a><a href="undefined">3.1??选择器</a></h2><p>CSS3新增了许多灵活查找元素的方法，极大的提高了查找元素的效率和精准度。CSS3选择器与jQuery中所提供的绝大部分选择器兼容。</p>
+<h3 id="3-1-1-属性选择器"><a href="#3-1-1-属性选择器" class="headerlink" title="3.1.1??属性选择器"></a><a href="undefined">3.1.1??属性选择器</a></h3><p>参考手册</p>
+<p>1、E[attr] 表示存在attr属性即可；</p>
+<p>2、E[attr=val] 表示属性值完全等于val</p>
+<p>3、E[attr~=val] 表示的一个单独的属性值 这个属性值是以空格分隔的</p>
+<p>4、E[attr|=val] 表示的要么一个单独的属性值 要么这个属性值是以“-”分隔的</p>
+<p>5、E[attr*=val] 表示的属性值里包含val字符并且在“任意”位置</p>
+<p>6、E[attr^=val] 表示的属性值里包含val字符并且在“开始”位置</p>
+<p>7、E[attr$=val] 表示的属性值里包含val字符并且在“结束”位置</p>
+<h3 id="3-1-2-伪类选择器"><a href="#3-1-2-伪类选择器" class="headerlink" title="3.1.2??伪类选择器"></a><a href="undefined">3.1.2??伪类选择器</a></h3><p>参考手册</p>
+<p>重点理解E是用来参考确定其父元素的，nth-child(n)对应根据E元素确定的父元素的所有子元素，nth-of-type(n) 的不同之处在于其对应的是只有E元素，会忽略其子元素。（此处要配合案例加强理解）</p>
+<p>E:nth-child(n) 第n个子元素，计算方法是E元素的全部兄弟元素</p>
+<p>E:nth-of-type(n) 第n个子元素，计算方法只是E元素，会忽略其子元素的</p>
+<p>存在</p>
+<p>E:nth-last-child(n) 同E:nth-child(n) 计算顺序相反。</p>
+<p>E:nth-last-of-type(n) 同E:nth-of-type(n) 计算顺序相反。</p>
+<p>n遵循线性变化，其取值1、2、3、4、… </p>
+<p>关于n的取值范围：</p>
+<p>1、当n做为一个独立值时，n取值为n&gt;=1，例如nth-child(n)</p>
+<p>2、当n做一个系数时，n取值为n&gt;=0者n&lt;0，例如nth-child(2n+1)、nth-child(-n+5) 此处需要理解2n+1或者-n+5做为一个整体不能小于1；</p>
+<p>E:only-child 表示当前以E确定的父元素，除E之外并无其它子元素（独生子）；</p>
+<p>E:only-of-type表示当前以E确定的父元素， 除E之外不能包含其它和E同类型的子元素；</p>
+<p>E:target 结合锚点进行使用，处于当前锚点的元素会被选中；</p>
+<p>E:empty 选中没有任何子节点的E元素；</p>
+<h3 id="3-1-3-伪元素选择器"><a href="#3-1-3-伪元素选择器" class="headerlink" title="3.1.3??伪元素选择器"></a><a href="undefined">3.1.3??伪元素选择器</a></h3><p>E::selection 可改变选中文本的样式</p>
+<p>E::placeholder 可改变placeholder默认样式，这个存在明显的兼容问题，比如::-webkit-input-placeholder，具体参考手册进行对比。</p>
+<p>E:after、E:before 在旧版本里是伪类，在新版本里是伪元素，新版本下E:after、E:before会被自动识别为E::after、E::before，按伪元素来对待。</p>
+<p>“:”与 “::” 区别在于区分伪类和伪元素</p>
+<h2 id="3-2-颜色"><a href="#3-2-颜色" class="headerlink" title="3.2??颜色"></a><a href="undefined">3.2??颜色</a></h2><p>新增了RGBA、HSLA模式，其中的A 表示透明度通道，即可以设置颜色值的透明度，相较opacity，不具有继承性，即不会影响子元素的透明度。</p>
+<p>Red、Green、Blue、Alpha即RGBA</p>
+<p>Hue、Saturation、Lightness、Alpha即HSLA</p>
+<p>R、G、B 取值范围0~255</p>
+<p>H 取值范围0~360，0/360表示黑色、120表示绿色、240表示蓝色</p>
+<p>S 取值范围0%~100%</p>
+<p>L 取值范围0%~100%</p>
+<p>A 取值范围0~1</p>
+<p>关于透明度：</p>
+<p>1、opacity子元素会继承父元素的透明度，在实际开发中会带来干扰；</p>
+<p>2 、transparent 设置透明度时完全类似于“玻璃”一样的透明；</p>
+<h2 id="3-3-文本"><a href="#3-3-文本" class="headerlink" title="3.3??文本"></a><a href="undefined">3.3??文本</a></h2><p>参考手册</p>
+<p>文字阴影与边框阴影相似，可分别设置偏移量、模糊度、颜色（可设透明度）。</p>
+<p>单行文本溢出，需要配合overflow:hidden; white-space: nowrap;</p>
+<p>难理解的点：</p>
+<p>自已要多试着理解一下关于white-space的各个属性值之间的差异；</p>
+<p>上述方法只能解决单行文本的溢出问题，多行文本溢出处理可参照下面的方法，但是有比较严重的兼容性，需要慎重选择，比较完备的多行溢出需要JS辅助完成，可自行尝试。</p>
+<p>多行文本文字溢出处理，非标准属性，可应用于移动端</p>
+<p>了解常握white-space 使用</p>
+<h2 id="3-4-边框"><a href="#3-4-边框" class="headerlink" title="3.4??边框"></a><a href="undefined">3.4??边框</a></h2><p>其边框圆角、边框阴影属性，应用十分广泛，兼容性也相对较好，具有符合渐进增强原则的特征，我们需要重点掌握。</p>
+<h3 id="3-4-1-边框圆角"><a href="#3-4-1-边框圆角" class="headerlink" title="3.4.1??边框圆角"></a><a href="undefined">3.4.1??边框圆角</a></h3><p>圆角处理时，脑中要形成圆、圆心、长半径、短半径的概念，正圆是椭圆的一种特殊情况。</p>
+<p>可分别设置长、短半径，以“/”进行分隔，遵循“1，2，3，4”规则，参考手册练习熟悉各种简写方式。</p>
+<p>表格运用圆角需要要 border-collapse: separate;</p>
+<p>当圆角半径小于或等于边框宽度时，元素内角是直角</p>
+<p>如何在PS中查看圆角半径？</p>
+<h3 id="3-4-2-边框图片"><a href="#3-4-2-边框图片" class="headerlink" title="3.4.2??边框图片"></a><a href="undefined">3.4.2??边框图片</a></h3><p>设置的图片将会被“切割”成九宫格形式，然后进行设置。</p>
+<p>“切割”完成后生成虚拟的9块图形，然后按对应位置设置背景，</p>
+<p>其中四个角位置、形状保持不变，中心位置水平垂直两个方向平铺。如下图</p>
+<p>round 会自动调整尺寸，完整显示边框图片。</p>
+<p>此图贴图</p>
+<p>repeat 单纯平铺多余部分，会被“裁切”而不显示。</p>
+<p>此处贴图</p>
+<h3 id="3-4-3-边框阴影"><a href="#3-4-3-边框阴影" class="headerlink" title="3.4.3??边框阴影"></a><a href="undefined">3.4.3??边框阴影</a></h3><p>设置边框阴影不会影响盒子的布局，即不会影响其兄弟元素的布局 </p>
+<p>spread可以与blur、h-shadow、v-shadow相互抵消，blur不可为负值</p>
+<p>可以设置多重边框阴影，实现更好的效果，增强立体感。</p>
+<h2 id="3-5-盒模型"><a href="#3-5-盒模型" class="headerlink" title="3.5??盒模型"></a><a href="undefined">3.5??盒模型</a></h2><p>关于盒模型存在两种形式，分别是W3C标准盒模型和IE盒模型，如下图所示，其区别主要在于宽度和高度的计算方式，CSS3对盒模型做出了新的定义，即允许开发人员指定盒子宽度和高度的计算方式。</p>
+<p>IE盒模型只会出现在IE5版本和IE6+的怪异模式中。</p>
+<h2 id="3-6-背景"><a href="#3-6-背景" class="headerlink" title="3.6??背景"></a><a href="undefined">3.6??背景</a></h2><p>背景在CSS3中也得到很大程度的增强，比如背景图片尺寸、背景裁切区域、背景定位参照点、多重背景等。</p>
+<p>cover 会使“最大”边，进行缩放，另一边同比缩放，铺满容器，超出部分会溢出。</p>
+<p>contain 会使“最小”边，进行缩放，另一边同比缩放，不一定铺满容器，会完整显示图片。</p>
+<p>background-size会以background-clip设定的盒模型计算</p>
+<p>背景图片尺寸在实际开发中应用十分广泛。</p>
+<p>参照手册</p>
+<p>?</p>
+<h2 id="3-7-渐变"><a href="#3-7-渐变" class="headerlink" title="3.7??渐变"></a><a href="undefined">3.7??渐变</a></h2><p>渐变是CSS3当中比较丰富多彩的一个特性，通过渐变我们可以实现许多炫丽的效果，有效的减少图片的使用数量，并且具有很强的适应性和可扩展性。</p>
+<p>可分为线性渐变、径向渐变、重复渐变。</p>
+<p>线性渐变指沿着某条直线朝一个方向产生渐变效果。</p>
+<p>此处可配图</p>
+<p>径向渐变指从一个中心点开始沿着四周产生渐变效果</p>
+<p>此处可配图</p>
+<p>关于圆的知识同边框圆角章节的介绍</p>
+<h2 id="3-8-伸缩布局"><a href="#3-8-伸缩布局" class="headerlink" title="3.8??伸缩布局"></a><a href="undefined">3.8??伸缩布局</a></h2><p>CSS3在布局方面做了非常大的改进，使得我们对块级元素的布局排列变得十分灵活，适应性非常强，其强大的伸缩性，在响应式开中可以发挥极大的作用，使得开发人员一下子就过上了小康的生活。</p>
+<p>伸缩盒模型经历了几次演变，大致分为旧版伸缩布局、过渡伸缩布局、新版伸缩布局，同样为了避免混淆，我们以学习新版伸缩布局为主。</p>
+<h3 id="3-8-1-新版伸缩布局"><a href="#3-8-1-新版伸缩布局" class="headerlink" title="3.8.1??新版伸缩布局"></a><a href="undefined">3.8.1??新版伸缩布局</a></h3><p>这里我们需要引入一些新的概念：</p>
+<p>主轴：Flex容器的主轴主要用来配置Flex项目。</p>
+<p>侧轴：与主轴垂直的轴称作侧轴，是侧轴方向的延伸。</p>
+<p>主轴和侧轴并不是固定不变的，通过flex-direction可以调整。</p>
+<p>另个两个版本伸缩布局其实现思路与新版基本一致，区别在于其属性及属性值不同，熟练掌握新版伸缩布局后，要参照对比另外两个版本的不同。</p>
+<h2 id="3-9-多列布局"><a href="#3-9-多列布局" class="headerlink" title="3.9??多列布局"></a><a href="undefined">3.9??多列布局</a></h2><p>类似报纸或杂志中的排版方式，上要用以控制大篇幅文本。</p>
+<p>参照手册</p>
+<h2 id="3-10-过渡"><a href="#3-10-过渡" class="headerlink" title="3.10?????过渡"></a><a href="undefined">3.10?????过渡</a></h2><p>过渡是CSS3中具有颠覆性的特征之一，可以实现元素不同状态间的平滑过渡（补间动画），经常用来制作动画效果。</p>
+<p>帧动画：通过一帧一帧的关键画面按照固定顺序和速度播放。如电影胶片</p>
+<p>补间动画：自动完成从起始状到终止状的的过度。</p>
+<p>关于补间动画更多学习可查看<a href="http://mux.alimama.com/posts/1009" target="_blank" rel="external">http://mux.alimama.com/posts/1009</a></p>
+<h2 id="3-11-动画"><a href="#3-11-动画" class="headerlink" title="3.11?????动画"></a><a href="undefined">3.11?????动画</a></h2><p>动画是CSS3中具有颠覆性的特征之一，可通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果。</p>
+<p>贝塞尔曲线限定了过渡的轨迹。</p>
+<p>参考手册</p>
+<h2 id="3-12-转换"><a href="#3-12-转换" class="headerlink" title="3.12?????转换"></a><a href="undefined">3.12?????转换</a></h2><p>转换是CSS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、变形、缩放，甚至支持矩阵方式，配合即将学习的过渡和动画知识，可以取代大量之前只能靠Flash才可以实现的效果。</p>
+<p>2D 转换</p>
+<p>translate(x,y)? x、y可为负值，相对自身移动，并未脱离文档流。</p>
+<p>左手坐标系：伸出左手，让拇指和食指成“L”形，大拇指向右，食指向上，中指指向前方。这样我们就建立了一个左手坐标系，拇指、食指和中指分别代表X、Y、Z轴的正方向。</p>
+<p>左手法则：左手握住旋转轴，竖起拇指指向旋转轴正方向，正向旋转方向就是其余手指卷曲的方向。</p>
+<p>3D坐标轴，用X、Y、Z分别表示空间的3个维度，三条轴上互相垂直。<br>?</p>
+<p>?</p>
+<h2 id="3-13-媒体查询"><a href="#3-13-媒体查询" class="headerlink" title="3.13?????媒体查询"></a><a href="undefined">3.13?????媒体查询</a></h2><p>由于网页呈现终端设备越来越趋向于多样化，尤其是移动终端（手机），具有不同屏幕尽寸、不同分辨率，为了保证网页能十分友好的呈现，CSS3为开发人员提供了可以识别呈现终端的方法，这样便可以有针对性的为不同的呈现终端分别进行处理，被广泛应用于响应式开发中。</p>
+<p>html 标签方式：</p>
+<p>css 属性方式：</p>
+<p>常使用的是检测设备宽度</p>
+<p>参考手册</p>
+<h1 id="第4章Web字体"><a href="#第4章Web字体" class="headerlink" title="第4章Web字体"></a><a href="undefined">第4章Web</a>字体</h1><p>开发人员可以为自已的网页指定特殊的字体，无需考虑用户电脑上是否安装了此特殊字体，从此把特殊字体处理成图片的时代便成为了过去。</p>
+<p>支持程度比较好，甚至IE低版本浏览器也能支持。</p>
+<h2 id="4-1-字体格式"><a href="#4-1-字体格式" class="headerlink" title="4.1??字体格式"></a><a href="undefined">4.1??字体格式</a></h2><p>不同浏览器所支持的字体格式是不一样的，我们有必要了解一下有关字体格式的知识。</p>
+<p>1、TureTpe(.ttf)格式</p>
+<p>.ttf字体是Windows和Mac的最常见的字体，是一种RAW格式，支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome4+、Safari3+、Opera10+、iOS Mobile、Safari4.2+；</p>
+<p>2、OpenType(.otf)格式</p>
+<p>.otf字体被认为是一种原始的字体格式，其内置在TureType的基础上，支持这种字体的浏览器有Firefox3.5+、Chrome4.0+、Safari3.1+、Opera10.0+、iOS Mobile、Safari4.2+；</p>
+<p>3、Web Open Font Format(.woff)格式</p>
+<p>woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离，支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome6+、Safari3.6+、Opera11.1+；</p>
+<p>4、Embedded Open Type(.eot)格式</p>
+<p>.eot字体是IE专用字体，可以从TrueType创建此格式字体，支持这种字体的浏览器有IE4+；</p>
+<p>5、SVG(.svg)格式</p>
+<p>.svg字体是基于SVG字体渲染的一种格式，支持这种字体的浏览器有Chrome4+、Safari3.1+、Opera10.0+、iOSMobile Safari3.2+；</p>
+<p>关于字体介绍摘自<a href="http://www.w3cplus.com/content/css3-font-face/" target="_blank" rel="external">http://www.w3cplus.com/content/css3-font-face/</a></p>
+<p>了解了上面的知识后，我们就需要为不同的浏览器准备不同格式的字体，通常我们会通过字体生成工具帮我们生成各种格式的字体，因此无需过于在意字体格式间的区别差异。</p>
+<p>推荐<a href="http://www.zhaozi.cn/、http://www.youziku.com/" target="_blank" rel="external">http://www.zhaozi.cn/、http://www.youziku.com/</a> 查找更多中文字体</p>
+<h2 id="4-2-字体图标"><a href="#4-2-字体图标" class="headerlink" title="4.2??字体图标"></a><a href="undefined">4.2??字体图标</a></h2><p>其实我们可以把文字理解成是一种特殊形状的图片，反之我们是不是也可以把图片制作成字体呢？</p>
+<p>答案是肯定的。</p>
+<p>常见的是把网页常用的一些小的图标，借助工具帮我们生成一个字体库，然后就可以像使用文字一样使用图标了。</p>
+<p>优点：</p>
+<p>1、将所有图标打包成字体库，减少请求；</p>
+<p>2、具有矢量性，可保证清晰度；</p>
+<p>3、使用灵活，便于维护；</p>
+<p>Font Awesome 使用介绍</p>
+<p><a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">http://fontawesome.dashgame.com/</a></p>
+<p>定制自已的字体图标库</p>
+<p><a href="http://iconfont.cn/" target="_blank" rel="external">http://iconfont.cn/</a></p>
+<p><a href="https://icomoon.io/" target="_blank" rel="external">https://icomoon.io/</a></p>
+<h1 id="第5章兼容性"><a href="#第5章兼容性" class="headerlink" title="第5章兼容性"></a><a href="undefined">第5章兼容性</a></h1><p>通过<a href="http://caniuse.com/" target="_blank" rel="external">http://caniuse.com/</a> 可查询CSS3各特性的支持程度，一般兼容性处理的常见方法是为属性添加私有前缀，如不能解决，应避免使用，无需刻意去处理CSS3的兼容性问题。</p>
+<h1 id="第6章高级应用"><a href="#第6章高级应用" class="headerlink" title="第6章高级应用"></a><a href="undefined">第6章高级应用</a></h1></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-11-14</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2016/11/14/CSS3（1）/,陆涛博客,CSS3（1）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/12/20/CSS3（2）/" title="CSS3（2）" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/10/03/H5（2）/" title="H5（2）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

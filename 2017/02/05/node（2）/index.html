@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>node（2） · 陆涛博客</title><meta name="description" content="第三部分
+commonjs规范commonjs规范不是专门为javascript模块化制定的规范，而是为javascript语言很多在后台没有实现的功能制定的API规范：例如：文件操作、网络操作、进程操作等接口API为javascript语言本身在后台的功能实现定义了很多API，其实就包括 模块化的"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>node（2）</a></h3></div><div class="post-content"><h2 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h2><ol>
+<li><p>commonjs规范<br>commonjs规范不是专门为javascript模块化制定的规范，而是为javascript语言很多在后台没有实现的功能制定的API规范：<br>例如：文件操作、网络操作、进程操作等接口API<br>为javascript语言本身在后台的功能实现定义了很多API，其实就包括 模块化的规范 API</p>
+<ul>
+<li>一个单独的文件就是一个模块</li>
+<li>所有代码都运行在模块作用域，不会污染全局作用域（node没有全局作用域）</li>
+<li>每个文件的对外接口是module.exports对象</li>
+<li>require命令用于加载模块文件的接口对象</li>
+<li>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载</li>
+<li>模块加载的顺序，按照其在代码中出现的顺序 </li>
+</ul>
+<ol>
+<li>coomonjs模块与核心模块</li>
+</ol>
+<ul>
+<li>require方法的参数一般叫做 模块标识</li>
+<li>如果要找和当前文件平级的文件模块，必须加./</li>
+<li>在node中，除了自己写的文件模块之外，Node本身还提供了很多其他的 核心模块</li>
+<li>核心模块是Node本身自带的，本质上也是文件，只不过我们看不见</li>
+<li>核心模块有自己的专属名字</li>
+<li>例如：我们想操作文件 fs(readfile,writefile)</li>
+</ul>
+</li>
+<li><p>读取文件</p>
+<ul>
+<li>第一个参数表示要读取的文件的路径</li>
+<li>第二个参数表示读取成功之后的回调函数</li>
+<li>回调函数中的第一个参数表示读取文件失败的时候的错误对象</li>
+<li>如果读取文件发生了异常，那么err就是一个错误对象</li>
+<li>如果读取文件没有异常，那么err就是null</li>
+<li>回调函数中的第二个参数就是真正的文件数据，默认是二进制数据</li>
+<li>默认读取到的data是二进制数据，node帮我们把0101这种二进制转换成了16进制的表现形式</li>
+</ul>
+</li>
+<li><p>npm</p>
+<ul>
+<li>node.js默认的包管理器</li>
+<li>是一个基于node做的一个终端中的应用程序，叫做npm</li>
+</ul>
+<p>加载库的时候路径的问题<br>1.不是路径形成的文件模块<br>2.也不是核心模块<br>3.是一个第三方模块<br>首先：node在当前code目录下的node_modules目录下找有没有一个叫做underscore的目录<br>如果有，那么找underscore目录下的package.json的文件<br>如果找到package.json文件，那么node找该文件中的main属性（指定入口模块的文件，路径是相对于package.json的）<br>默认index.js</p>
+<p>如果当前目录没有node_modules目录<br>node自从进入上一级目录开始查找<br>如果一直找到盘符还没有找到就报错</p>
+<p>var a=require(‘./a’) 没有写扩展名，会当前目录找a.js–&gt;a.json–&gt;a.node(c++扩展模块)<br>var a=require(‘./a.js)带有相对路径且有扩展名，会去当前路径找a.js<br>var a=require(path.join(__dirname,’a.js’))绝对路径<br>var a=require(‘a’)没有写任何相对路径对的东西，去找核心模块或者第三方模块</p>
+<p>package.json<br>dependencies：当前项目依赖<br>scripts：指定了运行脚本命令的npm命令行缩写（bat脚本，linux里面叫shell），例如start</p>
+<p>对于npm install 包名或者 npm install –save包名来说<br>都是为了在项目中通过require加载该包，使用里面的功能</p>
+<p>对于包来说，还有一些基于node开发的一些命令行工具<br>一般这种工具，我们都是可以在全局命令行中直接就可以使用的<br>列入输入node命令，例如输入npm命令，例如http-server<br>安装第三方命令台工具的时候，一定要加 -g 参数</p>
+<p>npm命令<br>npm doc vue 把官网打开</p>
+<p>npm有一个304请求<br>包和模块<br>包：一个文件夹，里面有一个主模块（依赖一堆其它的模块）</p>
+<p>npm被墙<br> vpn<br> cnpm<br> nrm</p>
+<p>npm的缺点</p>
+<ol>
+<li>下载慢</li>
+<li>a开发者用的版本可能和b开发者哪怕是同一个package.json，它们的版本有可能不一样</li>
+</ol>
+<p>可以使用yarn</p>
+<p>文件操作相关<br> 二进制和编码以及字符串的关系<br> 二进制数据</p>
+<pre><code>在计算机中，存储的都是0 1 0 1 这样的数据
+</code></pre><p> 编码</p>
+<pre><code>编码就是 从 字符串 到 0101 数据之间的转换字典
+ascii只有一些英文字符 26个英文字母、键盘上的一些英文符号
+为了计算机更快的在世界范围进行普及：所以各个国家制定了很多自己的编码
+例如中国就制定了：gbk gb2312
+</code></pre><p> node中支持的编码类型<br>  ascii utf-8 binary base64 ucs2 utf16le<br> 编码的转换</p>
+<pre><code>二进制到 字符串
+字符串到二进制 toString（）
+iconv-lite 解决node中不支持的编码类型
+</code></pre><p> 默认读取出来的文件中的数据就是一个Buffer对象<br> Buffer对象是一个类似于数组的东西<br> Buffer里面的每一个元素，就是一个字节<br> 一个字节是8位<br> 一位就表示 0  或者 1<br> 一个字节可以用来表示<br> 8个字节最多可以用来表示256种状态</p>
+<p> npm install –save iconv-lite</p>
+<p> 二进制文件和字符集文件</p>
+<p> 文件操作</p>
+<pre><code>同步和异步文件系统调用
+    同步操作就是 阻塞IO操作
+        阻塞IO会立即执行
+        然后以同步编程的方式接收返回值
+        对于同步IO必须使用try……catch来捕获异常
+        同步IO操作对于编程简单方便，没有那么多嵌套
+        例如node中的文件操作API，带sync的都是同步IO
+
+    异步操作就是 非阻塞IO操作
+        异步操作会先把这个任务添加到事件队列
+        异步调用必须通过 回调函数 的方式来接收异步的返回结果
+        异步调用一般都是通过回调函数中的第一个参数 err 对象来判定是否有错误
+        异步IO能提高代码的性能，但是不利于程序员的编程思维习惯
+        不带sync的都是异步IO
+</code></pre><p> 移动文件、重命名文件 rename</p>
+</li>
+</ol>
+<p>书：深入操作系统</p>
+<h2 id="第四部分"><a href="#第四部分" class="headerlink" title="第四部分"></a>第四部分</h2><ol>
+<li><p>监视文件</p>
+<ul>
+<li>watch</li>
+<li>watchFile</li>
+<li><p>案例<br>   修改文件就会触发回调处理函数<br>   当监视文件的时候，程序不会退出<br>   persistent》用来指定是否持续的监视文件，默认为true<br>   interval》用来指定监视文件的时间间隔<br>markdown文件转换器<br>less自动编译</p>
+<ol>
+<li>简单实现：将一个less文件编译成css文件</li>
+<li><p>通过监视自动将less文件编译成css文件<br>3.最后实现，将这个程序作为一个命令行工具</p>
+<p>配置npm start 直接输入终端输入的命令<br>如 node ./lib/index</p>
+<p>readme</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>-lib 放源码</p>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2></li>
+</ol>
+<ul>
+<li>npm init -y 生成一个package.json文件</li>
+<li>在package.json文件中的scripts节点下添加一个start节点</li>
+<li>npm install –save less  将less安装到当前项目中，并且添加到依赖项中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>path模块<br>在windows路径分隔符是反斜杠<br>在linux中路径分割符是挣斜杠<br>path.join(‘c:/a/b’,’../c’)=&gt;c:\a\c</p>
+<p>readFile方法的第二参数可以用来指定编码类型<br>只要指定了编码类型，得到的数据会自动进行转换，data就是字符串<br>读——解析——写</p>
+<p>不推荐使用watchFile（），会有很多bug<br>推荐使用第三方模块监视文件 <a href="https://github.com/paulmillr/chokidar" target="_blank" rel="external">https://github.com/paulmillr/chokidar</a></p>
+<p>操作系统对于大小写同名文件是不区分<br>将要读取的文件一次性的读入了 内存<br>然后将读取到的数据一次性的写入了内存<br>对于小文件来说，可以直接这样做<br>一旦如果要读取一个很大的文件，内存肯定是放不下<br>一种方式，一点儿一点儿的读取，然后一点儿一点儿的写入<br>另一种方式：找一根管子，从一个水缸接入另一个水缸</p>
+<p>流有很多种<br>文件流<br>网络流<br>利用流的方式拷贝大文件</p>
+<p>（文件流）<br>可读流<br>var readStream=fs.createReadStream(src)//根据指定的文件创建一个可读流，得到一个可读流对象<br>流对象有一个data对象，流对象会自动的帮我们去读取文件中的数据<br>一点一点儿读，只要读到了一点数据，然后出发data时间，将该数据传递给data事件的回调处理函数</p>
+<p>可读流 createReadStream<br>可写流 createWriteStream<br>可以通过可写流对象的write方法向流中写数据<br>写入完毕之后，一定要把可写流关闭掉,记住不要忘记<br>writeStream.end()</p>
+<p>chunk 数据块<br>chunk是一个buffer对象，二进制数据<br>chunk.length字节的长度<br>每一次读取到了一点儿数据，将该数据的长度累加起来/文件的总大小*100得到百分比<br>end事件类型就是在我们可读流结束我们的数据的时候触发</p>
+<p>Binary Viewer<br>startPage<br>devdocs.io用了localStorage，可用于查文档</p>
+<p>可以通过statSync可以读取我们的文件大小</p>
+<p>可读流有一个方法叫做pipe，pipe方法的参数就是 可写流对象<br>eg.rs.pipe(ws);<br>pipe方法比自己监听data事件来处理要高效<br>gulp是一个前端自动化构建工具：文件合并、文件压缩、图片压缩<br>gulp就是利用node里面流的威力，所以这个构建工具的性能很高</p>
+<p>流的本质上就是一种高效处理数据的一种方式而已</p>
+<p>小总结<br>文件操作<br>1.readFile-writefile<br>2.创建可读流，创建可写流-给我们的可读流加上data事件-当我们的data触发时写入数据<br>3.可读流.pipe(可写流)</p>
+<p>Buffer对象<br>buffer就是内存中的一个缓冲区，或者说就是内存中的一个数据块<br>new Buffer(size)<br>newBuffer(str[,encoding]);<br>Buffer(string[,encoding])<br>Buffer.concat(list[,totalLength])</p>
+<p>buf.write(‘a’)  默认是utf-8，也可以通过第二个参数改变<br>write方法会覆盖，可以设置偏移<br>如buf.write(‘a’);buf.write(‘b’,1);<br>buffer一旦确定了大小，就无法改变</p>
+<p>var buf2=new Buffer(‘hello world你好世界’);<br>查看字符串在具体的编码中占用的字节数<br>静态方法，不需要new就可以使用，直接在构造器上面绑定的方法<br>Buffer.byteLength()</p>
+<p>var buf1=new Buffer(‘he’);<br>var buf2=new Buffer(‘is’);<br>从申请内存角度来说，Buffer会先计算list数组的大小，然后去申请内存<br>如果直接指定了totalLength,Buffer就会不用走计算这一步了，直接申请，可以提高性能<br>Buffer.concat([buf1,buf2]，totalLength);</p>
+<p>使用流的时候，可以通过讲多个chunk保存起来，然后最后拼接到一起<br>toString()把buffer二进制的文件转换成utf-8格式的数据</p>
+<p>marked 把markdown转换成html</p>
+<p>tcp协议 传输层<br>http协议 应用层</p>
+<p>聊天客服用传输层tcp，http只能是单向的</p>
+<h2 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a>第五部分</h2><p>1.根据不同的请求路径返回不同的响应<br>    Node原生提供的http模块天生就不支持静态文件处理<br>    网站</p>
+<pre><code>如果throw err 就会造成服务器崩溃
+为了在开发阶段更快的看到错误信息，所以可以把错误信息输出到客户端
+err.message
+
+第三方 mime
+
+我们只给用户提供静态资源服务，不要把整站都当成静态资源提供给用户
+否则用户就随便的看到网站的源码，网站就不安全
+
+注意：中文路径会编码，然后再发出请求
+所以要解码在使用
+</code></pre></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-02-05</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2017/02/05/node（2）/,陆涛博客,node（2）,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2017/01/18/node（1）/" title="node（1）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

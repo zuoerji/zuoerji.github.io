@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>encode()和decode()区别 · 陆涛博客</title><meta name="description" content="一、json_encode()
+将PHP的数据结构转换成JOSN
+
+代码1
+12&amp;lt;?php$arr = array (&amp;apos;a&amp;apos;=&amp;gt;1,&amp;apos;b&amp;apos;=&amp;gt;2,&amp;apos;c&amp;apos;=&amp;gt;3,&amp;apos;d&amp;apos;=&amp;gt;4,&amp;apos;e&amp;"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陆涛博客</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>encode()和decode()区别</a></h3></div><div class="post-content"><h3 id="一、json-encode"><a href="#一、json-encode" class="headerlink" title="一、json_encode()"></a>一、json_encode()</h3><ul>
+<li><p>将PHP的数据结构转换成JOSN</p>
+<ul>
+<li><p>代码1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php$arr = array (&apos;a&apos;=&gt;1,&apos;b&apos;=&gt;2,&apos;c&apos;=&gt;3,&apos;d&apos;=&gt;4,&apos;e&apos;=&gt;5);</div><div class="line">echo json_encode($arr);?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3,&quot;d&quot;:4,&quot;e&quot;:5&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>代码2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$obj-&gt;body           = &apos;another post&apos;;</div><div class="line">$obj-&gt;id             = 21;</div><div class="line">$obj-&gt;approved       = true;</div><div class="line">$obj-&gt;favorite_count = 1;</div><div class="line">$obj-&gt;status         = NULL;</div><div class="line">echo json_encode($obj);</div></pre></td></tr></table></figure>
+</li>
+<li><p>结果</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">　　　&quot;body&quot;:&quot;another post&quot;,</div><div class="line">　　　&quot;id&quot;:21,</div><div class="line">　　　&quot;approved&quot;:true,</div><div class="line">　　　&quot;favorite_count&quot;:1,</div><div class="line">　　　&quot;status&quot;:null</div><div class="line">　&#125;</div></pre></td></tr></table></figure>
+<h3 id="二、json-decode"><a href="#二、json-decode" class="headerlink" title="二、json_decode()"></a>二、json_decode()</h3><ul>
+<li><p>将json文本转换为相应的PHP数据结构</p>
+<ul>
+<li>代码1</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$json = &apos;&#123;&quot;foo&quot;: 12345&#125;&apos;;</div><div class="line">$obj = json_decode($json);</div><div class="line">print $obj-&gt;&#123;&apos;foo&apos;&#125;; // 12345</div></pre></td></tr></table></figure>
+<ul>
+<li>代码2</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$json = &apos;&#123;&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3,&quot;d&quot;:4,&quot;e&quot;:5&#125;&apos;;</div><div class="line">var_dump(json_decode($json));</div></pre></td></tr></table></figure>
+<ul>
+<li>结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">object(stdClass)#1 (5) &#123;</div><div class="line"> </div><div class="line">　　[&quot;a&quot;] =&gt; int(1)</div><div class="line">　　[&quot;b&quot;] =&gt; int(2)</div><div class="line">　　[&quot;c&quot;] =&gt; int(3)</div><div class="line">　　[&quot;d&quot;] =&gt; int(4)</div><div class="line">　　[&quot;e&quot;] =&gt; int(5)</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>如果想要强制生成PHP关联数组，json_decode()需要加一个参数true：</p>
+<ul>
+<li>代码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$json = &apos;&#123;&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3,&quot;d&quot;:4,&quot;e&quot;:5&#125;&apos;;　</div><div class="line">var_dump(json_decode($json,true));</div></pre></td></tr></table></figure>
+<ul>
+<li>结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">array(5) &#123; 　　[&quot;a&quot;] =&gt; int(1) 　</div><div class="line">                     　[&quot;b&quot;] =&gt; int(2) 　</div><div class="line">                     　[&quot;c&quot;] =&gt; int(3) 　　</div><div class="line">                          [&quot;d&quot;] =&gt; int(4) 　</div><div class="line">                      　[&quot;e&quot;] =&gt; int(5)&#125;</div></pre></td></tr></table></figure></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2014-04-17</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"> <a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"> <a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"> <a href="http://twitter.com/home?status=,http://yoursite.com/2014/04/17/encode()和decode()区别/,陆涛博客,encode()和decode()区别,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2014/04/17/HTML5自定义属性对象Dataset/" title="HTML5自定义属性对象Dataset" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2014/04/16/AJAX编程/" title="Ajax编程" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
